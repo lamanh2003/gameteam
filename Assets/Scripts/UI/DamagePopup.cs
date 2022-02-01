@@ -7,7 +7,7 @@ namespace UI
 {
     public class DamagePopup : MonoBehaviour
     {
-        public static DamagePopup Create(Vector3 position, float damageAmount, float dir, bool isCriticalHit)
+        public static DamagePopup Create(Vector3 position, float dir, bool isCriticalHit, float damageAmount=1f)
         {
             GameObject damagePopupGameObject = Instantiate(GameAssetsController.Singleton.damagePopupPrefab, position, Quaternion.identity);
             DamagePopup damagePopup = damagePopupGameObject.GetComponent<DamagePopup>();

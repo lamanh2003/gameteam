@@ -19,7 +19,7 @@ namespace Skill.MagicWand
             if (col.gameObject.CompareTag("Enemy"))
             {
                 col.GetComponent<EnemyAbstract>().TakeDamage(damage);
-                DamagePopup.Create(col.transform.position,damage,1,false);
+                DamagePopup.Create(col.transform.position,1,false);
                 Destroy(gameObject);
             }
         }
