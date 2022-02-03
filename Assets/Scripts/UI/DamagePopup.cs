@@ -1,4 +1,3 @@
-using System.Collections;
 using Controller;
 using TMPro;
 using UnityEngine;
@@ -7,55 +6,49 @@ namespace UI
 {
     public class DamagePopup : MonoBehaviour
     {
-        public static DamagePopup Create(Vector3 position, float dir, bool isCriticalHit, float damageAmount=1f)
-        {
-            GameObject damagePopupGameObject = Instantiate(GameAssetsController.Singleton.damagePopupPrefab, position, Quaternion.identity);
-            DamagePopup damagePopup = damagePopupGameObject.GetComponent<DamagePopup>();
-            damagePopup.Setup(damageAmount, dir, isCriticalHit);
-            return damagePopup;
-        }
-
-        private TextMeshPro _textMesh;
-        private float _dir = 1; //-1 is left, 1 is right
-        private float _disappearCountdown;
+        private const float MoveSpeed = 2f;
+        private const float ScaleSpeed = 20f;
+        private const float DisappearSpeed = 5f;
+        private float _direction;
         private Color _textColor;
+        private TextMeshPro _textMeshPro;
+        private float _timeCountdown;
 
         private void Awake()
         {
-            _textMesh = transform.GetComponent<TextMeshPro>();
+            _textMeshPro = GetComponent<TextMeshPro>();
         }
 
-        void Update()
+
+        private void Update()
         {
-            float moveSpeed = 2f;
-            float scaleSpeed = 20f;
-            Vector3 direction = new Vector3(_dir, 1f, 0);
-            transform.position += direction * moveSpeed * Time.deltaTime;
-
-            _textMesh.fontSize += scaleSpeed / 4f * Time.deltaTime;
-
-            _disappearCountdown -= Time.deltaTime;
-            if(_disappearCountdown < 0)
+            transform.position += new Vector3(_direction, 1f, 0) * MoveSpeed * Time.deltaTime;
+            _textMeshPro.fontSize += ScaleSpeed / 4f * Time.deltaTime;
+            _timeCountdown -= Time.deltaTime;
+            if (_timeCountdown < 0)
             {
-                _textMesh.fontSize -= scaleSpeed * Time.deltaTime;
-
-                float disappearSpeed = 5f;
-                _textColor.a -= disappearSpeed * Time.deltaTime;
-                _textMesh.color = _textColor;
-                if(_textColor.a < 0)
-                {
-                    Destroy(gameObject);
-                }
+                _textMeshPro.fontSize -= ScaleSpeed * Time.deltaTime;
+                _textColor.a -= DisappearSpeed * Time.deltaTime;
+                _textMeshPro.color = _textColor;
+                if (_textColor.a < 0) Destroy(gameObject);
             }
         }
 
-        public void Setup(float damageAmount, float dir, bool isCriticalHit)
+        public static DamagePopup CreatePopup(Vector2 locate, float damage, float time = 1f, bool isCriticalHit = false, float direction = 1)
         {
-            _textMesh.SetText("-" + damageAmount.ToString());
-            _dir = dir;
-            if (isCriticalHit) _textMesh.color = new Color(255f / 255f, 117f / 255f, 117f / 255f, 1f);
-            _textColor = _textMesh.color;
-            _disappearCountdown = .3f;
+            var loaded = Instantiate(GameAssetsController.Singleton.damagePopupPrefab).GetComponent<DamagePopup>();
+            loaded.LoadData(locate, damage, time, isCriticalHit, direction);
+            return loaded;
+        }
+
+        private void LoadData(Vector2 locate, float damage, float time, bool isCriticalHit, float direction)
+        {
+            transform.position = locate;
+            _direction = direction;
+            _timeCountdown = time;
+            _textMeshPro.SetText(damage.ToString("0.2"));
+            _textMeshPro.color = isCriticalHit ? Color.red : Color.black;
+            _textColor = _textMeshPro.color;
         }
     }
 }
