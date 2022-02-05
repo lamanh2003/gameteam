@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 809805298669269457}
   - component: {fileID: 809805298669269456}
   m_Layer: 0
-  m_Name: GameAssetsController
+  m_Name: GameAssetsLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cadd989d09ef745b110995ae75990d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy1: {fileID: 4540154412221891189, guid: c95dc40c2d85cb7458bc3ec5ca6ec8bd, type: 3}
-  damagePopupPrefab: {fileID: 2917760600640761208, guid: 16a2da2a87bf1b9488bfb5815251eb64, type: 3}
-  magicWandBulletPrefab: {fileID: 9166099691381310802, guid: e3f39b4324d73b94094dcbcbdf4d28fc, type: 3}
+  pf_Enemy1: {fileID: 4540154412221891189, guid: c95dc40c2d85cb7458bc3ec5ca6ec8bd, type: 3}
+  pf_DamagePopupPrefab: {fileID: 2917760600640761208, guid: 16a2da2a87bf1b9488bfb5815251eb64, type: 3}
+  pf_MagicWandBulletPrefab: {fileID: 9166099691381310802, guid: e3f39b4324d73b94094dcbcbdf4d28fc, type: 3}
+  pf_KnifeBullet: {fileID: 9166099691381310802, guid: 1c393c23d0e8f6f4aa50b8e905f1b6c5, type: 3}
+  pf_BookBullet: {fileID: 1332616986269264966, guid: 2c04c7800117b1a4facef1b8120d5125, type: 3}
+  pf_Exp: {fileID: 1285340615718578966, guid: a303553740fe3734e9b5e2f2029c9dda, type: 3}
+  so_PlayerStats: {fileID: 11400000, guid: 3a16167d2820c694ca18454c89fa7704, type: 2}
+  so_LoadedSkill: {fileID: 11400000, guid: f7fa1a3495429f84ab18f7a56ef60d7e, type: 2}

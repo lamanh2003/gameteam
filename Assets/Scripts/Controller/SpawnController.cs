@@ -1,4 +1,5 @@
 using System.Collections;
+using Loader;
 using Player;
 using UnityEngine;
 
@@ -67,7 +68,7 @@ namespace Controller
             x += PlayerMovement.Singleton.GetCurrentPlayerPosition().x;
             y += PlayerMovement.Singleton.GetCurrentPlayerPosition().y;
 
-            Instantiate(GameAssetsController.Singleton.enemy1, new Vector3(x, y, 0), Quaternion.identity);
+            Instantiate(GameAssetsLoader.Singleton.pf_Enemy1, new Vector3(x, y, 0), Quaternion.identity);
         }
     }
 }

@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Loader;
 using Player;
+using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Enemy
@@ -35,6 +39,8 @@ namespace Enemy
         {
             var temp = currentHealth - Mathf.Max(amount, 0);
             currentHealth = Mathf.Clamp(temp, 0, maxHealth);
+            DamagePopup.CreatePopup(transform.position,amount);
+            Debug.Log(amount);
             if (currentHealth <= 0)
             {
                 Die();
@@ -43,7 +49,8 @@ namespace Enemy
     
         public virtual void Die()
         {
-            Destroy(this.gameObject);
+            Instantiate(GameAssetsLoader.Singleton.pf_Exp, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     
         protected virtual void MoveTowardPlayer()
@@ -57,6 +64,15 @@ namespace Enemy
         {
             isFrozen = true;
             rb.velocity = Vector2.zero;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Player"))
+            {
+                Player.Player.Singleton.TakeDamage(damage);
+                Die();
+            }
         }
     }
 }

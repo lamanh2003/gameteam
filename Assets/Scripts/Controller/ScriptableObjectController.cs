@@ -19,8 +19,7 @@ namespace Controller
             }
         }
         #region "Game Resources"
-        public PlayerStats playerStats;
-        public SkillAbstract loadedSkill;
+        
         #endregion
     }
 }

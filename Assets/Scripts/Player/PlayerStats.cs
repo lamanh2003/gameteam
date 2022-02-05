@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -7,7 +8,7 @@ namespace Player
     {
         public float maxHealth;
         public float currentHealth;
-        public int currentLevel;
+        public int currentLevel=1;
         public float currentExperience;
         public float recovery;
         public float armor;
@@ -21,6 +22,17 @@ namespace Player
         public float growth;
         public float greed;
         public float magnet;
+        
+        
+        public void AddExp(float amount)
+        {
+            currentExperience += amount;
+            if (currentExperience >= 10)
+            {
+                currentLevel++;
+                currentExperience = 0;
+            }
+        }
     }
 }
 

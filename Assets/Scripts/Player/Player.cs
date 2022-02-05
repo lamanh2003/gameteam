@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Controller;
 using Enemy;
+using Loader;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,12 +21,14 @@ namespace Player
             Singleton = this;
             _animator = GetComponent<Animator>();
             _flagIsDeath = false;
+            
         }
 
         private void Start()
         {
-            _playerStats = ScriptableObjectController.Singleton.playerStats;
+            _playerStats = GameAssetsLoader.Singleton.so_PlayerStats;
             _playerStats.currentHealth = _playerStats.maxHealth;
+            _playerStats.currentLevel = 1;
         }
 
         private void Update()
@@ -65,11 +64,7 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Enemy"))
-            {
-                TakeDamage(other.gameObject.GetComponent<EnemyAbstract>().damage);
-                other.gameObject.GetComponent<EnemyAbstract>().Die();
-            }
+            
         }
 
         private void HandleHealthBar()

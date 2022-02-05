@@ -1,4 +1,4 @@
-﻿using Controller;
+﻿using Loader;
 using Player;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ namespace Skill.MagicWand
     [CreateAssetMenu(menuName = "Skill/MagicWand")]
     public class MagicWand: SkillAbstract
     {
-        public float baseDamage;
-        public float force;
+        [SerializeField]private float baseDamage;
+        [SerializeField]private float force;
         private float _damage;
         private GameObject _bulletPrefab;
         private Vector2 _enemyLocate;
@@ -16,7 +16,7 @@ namespace Skill.MagicWand
         protected override void Awake()
         {
             base.Awake();
-            _bulletPrefab = GameAssetsController.Singleton.magicWandBulletPrefab;
+            _bulletPrefab = GameAssetsLoader.Singleton.pf_MagicWandBulletPrefab;
         }
 
         public override bool PrepareSkill()

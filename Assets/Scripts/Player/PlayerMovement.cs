@@ -12,6 +12,8 @@ namespace Player
 
         private Vector2 _inputVector;
 
+        private Vector2 _direction = new Vector2(1,0);
+
         private void Awake()
         {
             Singleton = this;
@@ -26,6 +28,10 @@ namespace Player
         private void Update()
         {
             _inputVector = _gameControl.Gameplay.Move.ReadValue<Vector2>();
+            if (_inputVector != Vector2.zero)
+            {
+                _direction = _inputVector;
+            }
             _playerRigidbody.velocity = _inputVector;
         }
 
@@ -37,6 +43,16 @@ namespace Player
         public bool isMoving()
         {
             return _inputVector != Vector2.zero;
+        }
+
+        public Vector2 GetPlayerDirection()
+        {
+            return _direction;
+        }
+
+        public Vector2 GetInputVector2()
+        {
+            return _inputVector;
         }
     }
 }

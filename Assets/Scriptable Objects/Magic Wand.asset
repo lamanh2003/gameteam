@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Magic Wand
   skillDescription: Fire at nearest enemy
-  skillCooldown: 0.5
+  skillCooldown: 1
   skillSound: {fileID: 8300000, guid: de5b8548f739c2f458c525069583b449, type: 3}
   playerStats: {fileID: 11400000, guid: 3a16167d2820c694ca18454c89fa7704, type: 2}
-  baseDamage: 10
+  baseDamage: 5
   force: 10

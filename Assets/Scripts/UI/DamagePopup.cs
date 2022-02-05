@@ -1,4 +1,4 @@
-using Controller;
+using Loader;
 using TMPro;
 using UnityEngine;
 
@@ -36,7 +36,7 @@ namespace UI
 
         public static DamagePopup CreatePopup(Vector2 locate, float damage, float time = 1f, bool isCriticalHit = false, float direction = 1)
         {
-            var loaded = Instantiate(GameAssetsController.Singleton.damagePopupPrefab).GetComponent<DamagePopup>();
+            var loaded = Instantiate(GameAssetsLoader.Singleton.pf_DamagePopupPrefab).GetComponent<DamagePopup>();
             loaded.LoadData(locate, damage, time, isCriticalHit, direction);
             return loaded;
         }
@@ -46,7 +46,7 @@ namespace UI
             transform.position = locate;
             _direction = direction;
             _timeCountdown = time;
-            _textMeshPro.SetText(damage.ToString("0.2"));
+            _textMeshPro.SetText(damage.ToString());
             _textMeshPro.color = isCriticalHit ? Color.red : Color.black;
             _textColor = _textMeshPro.color;
         }

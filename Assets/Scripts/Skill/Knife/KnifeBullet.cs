@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using Enemy;
 using UI;
 using UnityEngine;
 
-namespace Skill.MagicWand
+namespace Skill.Knife
 {
-    public class MagicBullet : MonoBehaviour
+    public class KnifeBullet: MonoBehaviour
     {
         public float damage;
 

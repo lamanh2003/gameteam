@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStatsSO
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
+  currentHealth: 100
   currentLevel: 0
   currentExperience: 0
   recovery: 0

@@ -1,4 +1,4 @@
-﻿using Controller;
+﻿using Loader;
 using Player;
 using UnityEngine;
 
@@ -15,7 +15,7 @@ namespace Skill
 
         protected virtual void Awake()
         {
-            playerStats = ScriptableObjectController.Singleton.playerStats;
+            playerStats = GameAssetsLoader.Singleton.so_PlayerStats;
         }
 
         protected virtual void Start()
