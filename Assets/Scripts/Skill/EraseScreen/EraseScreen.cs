@@ -31,6 +31,19 @@ namespace Skill.EraseScreen
                 }
             }
         }
+
+        public override void UpgradeSkill(string args)
+        {
+            switch (args)
+            {
+                case "cooldown":
+                    skillCooldown -= 1f;
+                    break;
+                default:
+                    break;
+            }
+            return;
+        }
     }
 
 

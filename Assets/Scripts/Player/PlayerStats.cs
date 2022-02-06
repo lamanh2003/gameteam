@@ -1,3 +1,5 @@
+using UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +33,8 @@ namespace Player
             {
                 currentLevel++;
                 currentExperience = 0;
+                AwardUI.Singleton.gameObject.SetActive(true);
+                AwardUI.Singleton.Init();
             }
         }
     }

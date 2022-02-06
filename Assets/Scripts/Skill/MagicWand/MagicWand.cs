@@ -7,8 +7,9 @@ namespace Skill.MagicWand
     [CreateAssetMenu(menuName = "Skill/MagicWand")]
     public class MagicWand: SkillAbstract
     {
-        [SerializeField]private float baseDamage;
+        public float baseDamage;
         [SerializeField]private float force;
+        public int projectile;
         private float _damage;
         private GameObject _bulletPrefab;
         private Vector2 _enemyLocate;
@@ -32,9 +33,13 @@ namespace Skill.MagicWand
     
         public override void TriggerSkill()
         {
-            GameObject bullet = Instantiate(_bulletPrefab, PlayerMovement.Singleton.GetCurrentPlayerPosition(), Quaternion.identity);
-            bullet.GetComponent<MagicBullet>().damage = _damage;
-            bullet.GetComponent<Rigidbody2D>().AddForce((_enemyLocate - PlayerMovement.Singleton.GetCurrentPlayerPosition()).normalized*force,ForceMode2D.Impulse);
+            for (int i = 0; i < projectile; i++)
+            {
+                GameObject bullet = Instantiate(_bulletPrefab, PlayerMovement.Singleton.GetCurrentPlayerPosition(), Quaternion.identity);
+                bullet.GetComponent<MagicBullet>().damage = _damage;
+                bullet.GetComponent<Rigidbody2D>().AddForce((_enemyLocate - PlayerMovement.Singleton.GetCurrentPlayerPosition()).normalized*force,ForceMode2D.Impulse);
+
+            }
             
         }
     
@@ -54,6 +59,21 @@ namespace Skill.MagicWand
             }
             
             return res;
+        }
+
+        public override void UpgradeSkill(string args)  // 
+        {
+            switch (args)
+            {
+                case "baseDamage":
+                    baseDamage += 1;
+                    break;
+                case "projectile":
+                    projectile++;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

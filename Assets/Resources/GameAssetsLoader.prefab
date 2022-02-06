@@ -51,4 +51,7 @@ MonoBehaviour:
   pf_BookBullet: {fileID: 1332616986269264966, guid: 2c04c7800117b1a4facef1b8120d5125, type: 3}
   pf_Exp: {fileID: 1285340615718578966, guid: a303553740fe3734e9b5e2f2029c9dda, type: 3}
   so_PlayerStats: {fileID: 11400000, guid: 3a16167d2820c694ca18454c89fa7704, type: 2}
-  so_LoadedSkill: {fileID: 11400000, guid: f7fa1a3495429f84ab18f7a56ef60d7e, type: 2}
+  so_Book: {fileID: 11400000, guid: f7fa1a3495429f84ab18f7a56ef60d7e, type: 2}
+  so_Knife: {fileID: 11400000, guid: ea6ba12f439e42f49906f5b72384c569, type: 2}
+  so_Erase: {fileID: 11400000, guid: 663c2ff4ad8d42a46b4c65364273cede, type: 2}
+  so_MagicWand: {fileID: 11400000, guid: 6505f20d22ab95245a8681a5bc1e4157, type: 2}

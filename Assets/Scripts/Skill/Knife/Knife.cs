@@ -7,8 +7,9 @@ namespace Skill.Knife
     [CreateAssetMenu(menuName = "Skill/Knife")]
     public class Knife: SkillAbstract
     {
-        [SerializeField] private float baseDamage;
+        public float baseDamage;
         [SerializeField] private float force;
+        public int projectile;
         private float _damage;
         private GameObject _bulletPrefab;
 
@@ -26,9 +27,27 @@ namespace Skill.Knife
 
         public override void TriggerSkill()
         {
-            GameObject loaded = Instantiate(_bulletPrefab, PlayerMovement.Singleton.GetCurrentPlayerPosition(), Quaternion.identity);
-            loaded.GetComponent<KnifeBullet>().damage = _damage;
-            loaded.GetComponent<Rigidbody2D>().AddForce(PlayerMovement.Singleton.GetPlayerDirection() * force,ForceMode2D.Impulse);
+            for (int i = 0; i < projectile; i++)
+            {
+                GameObject loaded = Instantiate(_bulletPrefab, PlayerMovement.Singleton.GetCurrentPlayerPosition(), Quaternion.identity);
+                loaded.GetComponent<KnifeBullet>().damage = _damage;
+                loaded.GetComponent<Rigidbody2D>().AddForce(PlayerMovement.Singleton.GetPlayerDirection() * force,ForceMode2D.Impulse);
+            }
+        }
+
+        public override void UpgradeSkill(string args)
+        {
+            switch (args)
+            {
+                case "baseDamage":
+                    baseDamage += 1;
+                    break;
+                case "projectile":
+                    projectile++;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

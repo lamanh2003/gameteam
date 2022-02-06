@@ -4,24 +4,24 @@ using Loader;
 using Skill;
 using UnityEngine;
 using Player;
+using UI;
 
 namespace Controller
 {
     public class SkillController : MonoBehaviour
     {
-        [SerializeField] private List<SkillAbstract> allSkill = new List<SkillAbstract>();
-        [SerializeField] private GameObject allButton;
-        private List<SkillAbstract> _skill= new List<SkillAbstract>();        
+        public List<SkillAbstract> allSkill = new List<SkillAbstract>();
+        public List<SkillAbstract> skill= new List<SkillAbstract>();        
         private List<float> _skillCooldown = new List<float>();
         private PlayerStats _playerStats;
-        private AudioSource _audioSource;
+        public static SkillController Singleton;
         
 
         private void Awake()
         {
-            _audioSource = GetComponent<AudioSource>();
-            
-            
+            Singleton = this;
+
+
         }
 
         private void Start()
@@ -32,7 +32,7 @@ namespace Controller
 
         private IEnumerator SkillCooldown(int index)
         {
-            SkillAbstract vSkillAbstract = _skill[index];
+            SkillAbstract vSkillAbstract = skill[index];
             while (true)
             { 
                 if (vSkillAbstract.PrepareSkill())
@@ -49,32 +49,41 @@ namespace Controller
         {
             if (index >= _skillCooldown.Count)
             {
-                _skillCooldown.Add(_skill[index].skillCooldown * (1 - _playerStats.cooldown / 100));
+                _skillCooldown.Add(skill[index].skillCooldown * (1 - _playerStats.cooldown / 100));
             }
-            _skillCooldown[index] = _skill[index].skillCooldown * (1 - _playerStats.cooldown / 100);
+            _skillCooldown[index] = skill[index].skillCooldown * (1 - _playerStats.cooldown / 100);
         }
 
         public void AddSkill(string name)
         {
+            Debug.Log("add");
             switch (name)
             {
                 case "MagicWand":
-                    _skill.Add(allSkill[0]);
-                    StartCoroutine(SkillCooldown(_skill.Count-1));
+                    skill.Add(allSkill[0]);
+                    StartCoroutine(SkillCooldown(skill.Count-1));
                     break;
                 case "Book":
-                    _skill.Add(allSkill[1]);
-                    StartCoroutine(SkillCooldown(_skill.Count-1));
+                    skill.Add(allSkill[1]);
+                    StartCoroutine(SkillCooldown(skill.Count-1));
                     break;
                 case "Knife":
-                    _skill.Add(allSkill[2]);
-                    StartCoroutine(SkillCooldown(_skill.Count-1));
+                    skill.Add(allSkill[2]);
+                    StartCoroutine(SkillCooldown(skill.Count-1));
                     break;
                 case "Erase":
-                    _skill.Add(allSkill[3]);
-                    StartCoroutine(SkillCooldown(_skill.Count-1));
+                    skill.Add(allSkill[3]);
+                    StartCoroutine(SkillCooldown(skill.Count-1));
                     break;
             }
+
+            AwardUI.Singleton.gameObject.SetActive(false);
+        }
+
+        public void UpgradeSkill(int id,string args)
+        {
+            skill.Find(x => x.skillName == allSkill[id].skillName).UpgradeSkill(args);
+            AwardUI.Singleton.gameObject.SetActive(false);
         }
     }
 }

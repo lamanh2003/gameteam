@@ -1,4 +1,5 @@
-﻿using Loader;
+﻿using System.Collections;
+using Loader;
 using Player;
 using UnityEngine;
 
@@ -7,9 +8,10 @@ namespace Skill.Book
     [CreateAssetMenu(menuName = "Skill/Book")]
     public class Book: SkillAbstract
     {
-        [SerializeField] private float baseDamage;
+        public float baseDamage;
         [SerializeField] private float totalTime;
         [SerializeField] private float rotateSpeed;
+        public int projectile;
         private float _damage;
         public GameObject _bookPrefab;
         protected override void Awake()
@@ -26,10 +28,31 @@ namespace Skill.Book
 
         public override void TriggerSkill()
         {
-            BookBullet loaded = Instantiate(_bookPrefab, PlayerMovement.Singleton.GetCurrentPlayerPosition() + Vector2.up, Quaternion.identity,PlayerMovement.Singleton.gameObject.transform).GetComponent<BookBullet>();
-            loaded.damage = _damage;
-            loaded.timer = totalTime;
-            loaded.rotateSpeed = rotateSpeed;
+            for (int i = 0; i < projectile; i++)
+            {
+                Debug.Log("book fire");
+                BookBullet loaded = Instantiate(_bookPrefab, PlayerMovement.Singleton.GetCurrentPlayerPosition() + Vector2.up, Quaternion.identity, PlayerMovement.Singleton.gameObject.transform)
+                    .GetComponent<BookBullet>();
+                loaded.damage = _damage;
+                loaded.timer = totalTime;
+                loaded.rotateSpeed = rotateSpeed;
+            }
+        }
+        
+
+        public override void UpgradeSkill(string args)  // +Base dmg và tăng projectile   
+        {
+            switch (args)
+            {
+                case "baseDamage":
+                    baseDamage += 10;
+                    break;
+                case "projectile":
+                    projectile++;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

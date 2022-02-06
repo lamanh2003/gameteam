@@ -1,4 +1,5 @@
-﻿using Loader;
+﻿using System.Collections.Generic;
+using Loader;
 using Player;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace Skill
         public float skillCooldown;
         public AudioClip skillSound;
         public PlayerStats playerStats;
-
+        public List<string> upgradeable = new List<string>();
         protected virtual void Awake()
         {
             playerStats = GameAssetsLoader.Singleton.so_PlayerStats;
@@ -26,5 +27,6 @@ namespace Skill
 
         public abstract bool PrepareSkill();
         public abstract void TriggerSkill();
+        public abstract void UpgradeSkill(string args);
     }
 }

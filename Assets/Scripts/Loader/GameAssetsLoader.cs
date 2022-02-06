@@ -1,5 +1,9 @@
 using Player;
 using Skill;
+using Skill.Book;
+using Skill.EraseScreen;
+using Skill.Knife;
+using Skill.MagicWand;
 using UnityEngine;
 
 namespace Loader
@@ -29,7 +33,11 @@ namespace Loader
         
         //  ScriptableObject
         public PlayerStats so_PlayerStats;
-        public SkillAbstract so_LoadedSkill;
+        public Book so_Book;
+        public Knife so_Knife;
+        public EraseScreen so_Erase;
+        public MagicWand so_MagicWand;
+
         #endregion
     }
 }

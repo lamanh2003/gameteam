@@ -1,6 +1,7 @@
 using Enemy;
 using Loader;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Player
@@ -50,6 +51,7 @@ namespace Player
             if (_flagIsDeath) return;
             _animator.Play("Die");
             _flagIsDeath = true;
+            SceneManager.LoadScene("Menu");
         }
 
         public void TakeDamage(float amount)

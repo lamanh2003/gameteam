@@ -9,17 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42c6d2e91c91fe14092ed48f545489ac, type: 3}
-  m_Name: Magic Wand
+  m_Script: {fileID: 11500000, guid: e173145d89164d3bbc9e93f145d09de8, type: 3}
+  m_Name: Book
   m_EditorClassIdentifier: 
-  skillName: MagicWand
-  skillDescription: Fire at nearest enemy
-  skillCooldown: 1
-  skillSound: {fileID: 8300000, guid: de5b8548f739c2f458c525069583b449, type: 3}
+  skillName: Book
+  skillDescription: 
+  skillCooldown: 10
+  skillSound: {fileID: 8300000, guid: 253291578a8735e4bb47b3896227fbf5, type: 3}
   playerStats: {fileID: 11400000, guid: 3a16167d2820c694ca18454c89fa7704, type: 2}
   upgradeable:
   - baseDamage
   - projectile
-  baseDamage: 5
-  force: 10
+  baseDamage: 1
+  totalTime: 5
+  rotateSpeed: 90
   projectile: 1
+  _bookPrefab: {fileID: 1332616986269264966, guid: 2c04c7800117b1a4facef1b8120d5125, type: 3}

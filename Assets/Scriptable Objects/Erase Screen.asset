@@ -7,19 +7,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42c6d2e91c91fe14092ed48f545489ac, type: 3}
-  m_Name: Magic Wand
+  m_Script: {fileID: 11500000, guid: 3b3bb2b9df734458b688d539f468607e, type: 3}
+  m_Name: Erase Screen
   m_EditorClassIdentifier: 
-  skillName: MagicWand
-  skillDescription: Fire at nearest enemy
-  skillCooldown: 1
-  skillSound: {fileID: 8300000, guid: de5b8548f739c2f458c525069583b449, type: 3}
+  skillName: Erase Screen
+  skillDescription: 
+  skillCooldown: 2
+  skillSound: {fileID: 8300000, guid: 4e0a186f654107840968216eb25b5743, type: 3}
   playerStats: {fileID: 11400000, guid: 3a16167d2820c694ca18454c89fa7704, type: 2}
   upgradeable:
-  - baseDamage
-  - projectile
-  baseDamage: 5
-  force: 10
-  projectile: 1
+  - cooldown
